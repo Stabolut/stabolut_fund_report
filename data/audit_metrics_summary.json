@@ -1,0 +1,79 @@
+{
+  "audit_meta": {
+    "verified_at": "2026-08-25T18:30:00Z",
+    "period": "2022-11 to 2026-07",
+    "total_months": 45,
+    "total_years": 3.75,
+    "csv_sha256": "e1710f76fed19430296bb7fb478abab933a77c776b48d14a44f39b7fda1ac87c",
+    "json_sha256": "440bc1f3360be2b6a08f4d56f8a051d1a1d50ade977e2f99dab4dc15d1d7fccf",
+    "verification_status": "AUDITED_AND_VERIFIED"
+  },
+  "performance_metrics": {
+    "cumulative_fund_return_pct": 68.34,
+    "cagr_fund_pct": 14.9,
+    "avg_monthly_yield_pct": 1.16,
+    "median_monthly_yield_pct": 1.12,
+    "min_monthly_yield_pct": 0.81,
+    "max_monthly_yield_pct": 1.95,
+    "annualized_volatility_pct": 0.93,
+    "sharpe_ratio": 10.85,
+    "sortino_ratio": 14.8,
+    "max_drawdown_monthly_pct": 0.0,
+    "beta_to_btc": 0.0124,
+    "correlation_to_btc": 0.592,
+    "monthly_win_rate_pct": 100.0
+  },
+  "benchmarks": {
+    "bitcoin": {
+      "cumulative_return_pct": 761.87,
+      "cagr_pct": 77.6,
+      "annualized_volatility_pct": 44.26,
+      "sharpe_ratio": 1.43,
+      "max_drawdown_pct": -17.39
+    },
+    "sp500": {
+      "cumulative_return_pct": 92.02,
+      "cagr_pct": 19.0,
+      "annualized_volatility_pct": 10.42,
+      "sharpe_ratio": 1.35,
+      "max_drawdown_pct": -8.61
+    }
+  },
+  "yearly_performance": {
+    "2022": {
+      "months_active": 2,
+      "sum_nominal_yield_pct": 1.8,
+      "compounded_fund_return_pct": 1.81,
+      "btc_return_pct": -19.13,
+      "sp500_return_pct": -0.84
+    },
+    "2023": {
+      "months_active": 12,
+      "sum_nominal_yield_pct": 12.68,
+      "compounded_fund_return_pct": 13.44,
+      "btc_return_pct": 154.67,
+      "sp500_return_pct": 24.23
+    },
+    "2024": {
+      "months_active": 12,
+      "sum_nominal_yield_pct": 16.17,
+      "compounded_fund_return_pct": 17.42,
+      "btc_return_pct": 124.63,
+      "sp500_return_pct": 23.3
+    },
+    "2025": {
+      "months_active": 12,
+      "sum_nominal_yield_pct": 14.58,
+      "compounded_fund_return_pct": 15.59,
+      "btc_return_pct": 66.2,
+      "sp500_return_pct": 17.82
+    },
+    "2026": {
+      "months_active": 7,
+      "sum_nominal_yield_pct": 7.17,
+      "compounded_fund_return_pct": 7.39,
+      "btc_return_pct": 12.1,
+      "sp500_return_pct": 7.29
+    }
+  }
+}

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stabolut Delta-Neutral Yield Fund — Quantitative Track Record (2022–2026)</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-blue-600 selection:text-white">
+
+  <!-- TOP HEADER / NAV -->
+  <header class="border-b border-slate-800/80 bg-slate-900/70 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center font-black text-white text-lg shadow-lg shadow-blue-500/20">
+          S
+        </div>
+        <div>
+          <span class="text-lg font-bold tracking-tight text-white">STABOLUT</span>
+          <span class="text-xs ml-2 px-2 py-0.5 rounded bg-blue-900/60 text-blue-300 font-mono border border-blue-700/50">QUANT TRACK RECORD</span>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="hidden md:flex items-center space-x-2 text-xs font-mono text-emerald-400 bg-emerald-950/50 border border-emerald-800/50 px-3 py-1 rounded-full">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>AUDITED • 45 MONTHS (NOV 2022 – AUG 2026)</span>
+        </div>
+        <a href="./Stabolut_Fund_Performance_Report.pdf" class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow transition shadow-blue-600/30">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          <span>Download PDF Fact Sheet</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/80 border border-blue-800/60 text-blue-300 text-xs font-medium mb-3">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-blue-400"></i>
+        <span>Multi-Exchange Delta-Neutral Arbitrage &amp; USB Token Reserve Engine</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-3">
+        Systematic Delta-Neutral Yield Performance
+      </h1>
+      <p class="text-base sm:text-lg text-slate-400 max-w-3xl leading-relaxed">
+        Complete performance analysis, risk parameters, and mathematical architecture for the Stabolut Delta-Neutral Fund from <strong class="text-white">November 2022 to August 1, 2026</strong>. 
+        Engineered to extract non-directional funding rate basis across BitMEX, Binance, and Kraken with zero net delta exposure.
+      </p>
+    </div>
+
+    <!-- KPI STATS GRID -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+      <!-- Card 1 -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 relative overflow-hidden group hover:border-blue-500/50 transition">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-blue-600/10 rounded-full blur-xl group-hover:bg-blue-600/20 transition"></div>
+        <div class="text-xs font-medium text-slate-400 mb-1 flex items-center justify-between">
+          <span>CUMULATIVE NET RETURN</span>
+          <i data-lucide="trending-up" class="w-4 h-4 text-blue-400"></i>
+        </div>
+        <div class="text-3xl font-black text-white font-mono tracking-tight">+68.34%</div>
+        <div class="text-xs text-blue-400 mt-2 flex items-center gap-1 font-mono">
+          <span>+14.90% Net CAGR p.a.</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 relative overflow-hidden group hover:border-emerald-500/50 transition">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-600/10 rounded-full blur-xl group-hover:bg-emerald-600/20 transition"></div>
+        <div class="text-xs font-medium text-slate-400 mb-1 flex items-center justify-between">
+          <span>SHARPE RATIO (Rf = 4.0%)</span>
+          <i data-lucide="zap" class="w-4 h-4 text-emerald-400"></i>
+        </div>
+        <div class="text-3xl font-black text-emerald-400 font-mono tracking-tight">10.85</div>
+        <div class="text-xs text-slate-400 mt-2 font-mono">
+          <span>Sortino: <strong class="text-emerald-300">14.80</strong></span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 relative overflow-hidden group hover:border-cyan-500/50 transition">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-cyan-600/10 rounded-full blur-xl group-hover:bg-cyan-600/20 transition"></div>
+        <div class="text-xs font-medium text-slate-400 mb-1 flex items-center justify-between">
+          <span>MONTHLY WIN RATE</span>
+          <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400"></i>
+        </div>
+        <div class="text-3xl font-black text-white font-mono tracking-tight">100.0%</div>
+        <div class="text-xs text-cyan-400 mt-2 font-mono">
+          <span>45 / 45 Profitable Months</span>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 relative overflow-hidden group hover:border-purple-500/50 transition">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-purple-600/10 rounded-full blur-xl group-hover:bg-purple-600/20 transition"></div>
+        <div class="text-xs font-medium text-slate-400 mb-1 flex items-center justify-between">
+          <span>BITCOIN BETA &amp; VOL</span>
+          <i data-lucide="activity" class="w-4 h-4 text-purple-400"></i>
+        </div>
+        <div class="text-3xl font-black text-purple-300 font-mono tracking-tight">0.012</div>
+        <div class="text-xs text-slate-400 mt-2 font-mono">
+          <span>Annual Volatility: <strong class="text-purple-300">0.93%</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN INTERACTIVE CHARTS -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+      
+      <!-- Chart 1: NAV Growth -->
+      <div class="lg:col-span-2 bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+          <div>
+            <h2 class="text-base font-bold text-white flex items-center gap-2">
+              <i data-lucide="line-chart" class="w-4 h-4 text-blue-400"></i>
+              Cumulative NAV Compounding (Base = 100.00 USD)
+            </h2>
+            <p class="text-xs text-slate-400">Realized growth vs. volatile directional benchmarks</p>
+          </div>
+          <div class="flex items-center space-x-1.5 text-xs font-mono">
+            <span class="inline-flex items-center gap-1 text-blue-400 px-2 py-0.5 rounded bg-blue-950/80 border border-blue-800">
+              <span class="w-2 h-2 rounded-full bg-blue-500"></span> Stabolut Fund
+            </span>
+            <span class="inline-flex items-center gap-1 text-amber-400 px-2 py-0.5 rounded bg-amber-950/80 border border-amber-800">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span> Bitcoin (BTC)
+            </span>
+          </div>
+        </div>
+        <div class="h-80 w-full relative">
+          <canvas id="navChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Chart 2: Asset Contribution -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+        <div>
+          <h2 class="text-base font-bold text-white flex items-center gap-2 mb-1">
+            <i data-lucide="pie-chart" class="w-4 h-4 text-cyan-400"></i>
+            PnL Attribution by Asset
+          </h2>
+          <p class="text-xs text-slate-400 mb-4">Funding basis yield distribution across instruments</p>
+          <div class="h-56 w-full relative flex items-center justify-center">
+            <canvas id="assetChart"></canvas>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-slate-800 grid grid-cols-2 gap-2 text-xs font-mono">
+          <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-amber-500"></span> BTC: 38.0%</div>
+          <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-purple-500"></span> SOL: 27.0%</div>
+          <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-slate-400"></span> XRP Quanto: 20.0%</div>
+          <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-blue-500"></span> ETH: 12.0%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERACTIVE CALCULATOR & STRATEGY ARCHITECTURE -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+      
+      <!-- Interactive Calculator -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl">
+        <h2 class="text-base font-bold text-white flex items-center gap-2 mb-1">
+          <i data-lucide="calculator" class="w-4 h-4 text-emerald-400"></i>
+          Historical Yield &amp; Cash Flow Simulator
+        </h2>
+        <p class="text-xs text-slate-400 mb-6">Simulate performance with actual audited monthly rates</p>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Initial Deposit ($ USD)</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500 font-mono">$</span>
+              <input type="number" id="calcPrincipal" value="100000" step="5000" class="w-full pl-8 pr-4 py-2 bg-slate-950 border border-slate-700 rounded-lg text-white font-mono text-sm focus:outline-none focus:border-blue-500 transition">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Compounding Mode</label>
+              <select id="calcMode" class="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-white text-xs font-mono focus:outline-none focus:border-blue-500">
+                <option value="compound">Reinvest Yield (Compounding)</option>
+                <option value="payout">Quarterly Payout (Simple Yield)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Duration</label>
+              <select id="calcDuration" class="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-white text-xs font-mono focus:outline-none focus:border-blue-500">
+                <option value="45">Full Track Record (45 Months)</option>
+                <option value="36">3 Years (36 Months)</option>
+                <option value="24">2 Years (24 Months)</option>
+                <option value="12">1 Year (12 Months)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3 font-mono text-xs">
+            <div class="flex justify-between items-center text-slate-400">
+              <span>Final Portfolio Value:</span>
+              <span id="resFinalVal" class="text-base font-bold text-emerald-400">$168,340.00</span>
+            </div>
+            <div class="flex justify-between items-center text-slate-400">
+              <span>Total Arbitrage Profit Generated:</span>
+              <span id="resProfit" class="text-sm font-semibold text-white">+$68,340.00 (+68.34%)</span>
+            </div>
+            <div class="flex justify-between items-center text-slate-400">
+              <span>Average Monthly Cash Flow:</span>
+              <span id="resMonthlyYield" class="text-sm font-semibold text-blue-400">$1,518.67 / mo</span>
+            </div>
+            <div class="flex justify-between items-center text-slate-400">
+              <span>Max Drawdown Experienced:</span>
+              <span class="text-sm font-semibold text-emerald-400">0.00%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Strategy Architecture & Trust Framework -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+        <div>
+          <h2 class="text-base font-bold text-white flex items-center gap-2 mb-1">
+            <i data-lucide="layers" class="w-4 h-4 text-purple-400"></i>
+            How the Delta-Neutral Engine Works
+          </h2>
+          <p class="text-xs text-slate-400 mb-4">Core arbitrage mechanisms and risk limits</p>
+
+          <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800">
+              <strong class="text-blue-400 block mb-1">1. Basis Extraction (Spot Long + Perp Short):</strong>
+              Eliminates directional price volatility (&Delta;<sub>USD</sub> &approx; 0) while capturing the 8-hour perpetual funding premium paid by market long speculators.
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800">
+              <strong class="text-purple-400 block mb-1">2. Quanto &amp; Inverse Settlement Modeling:</strong>
+              Mathematical decoupling of BitMEX quanto contracts (e.g. XRPUSD settled in BTC), hedging out underlying currency drift to guarantee stable USD returns.
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800">
+              <strong class="text-emerald-400 block mb-1">3. Automated Micro-Rebalancing:</strong>
+              Continuous real-time delta tracking with strict 1.0% deviation bands to avoid liquidation risk, slippage, and adverse spread execution.
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs font-mono text-slate-500">
+          <span>Smart Contract: <span class="text-slate-300">USBToken.sol</span></span>
+          <span class="text-emerald-400 flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5"></i> Par $1.00 Solvency</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL 45-MONTH TRACK RECORD TABLE -->
+    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl mb-10">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+        <div>
+          <h2 class="text-base font-bold text-white flex items-center gap-2">
+            <i data-lucide="table" class="w-4 h-4 text-blue-400"></i>
+            Audited Monthly Returns &amp; Market Regime History (45 Months)
+          </h2>
+          <p class="text-xs text-slate-400">Complete historical monthly cash flows from inception to wind-down</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="text" id="tableSearch" placeholder="Search month, regime..." class="px-3 py-1.5 bg-slate-950 border border-slate-700 rounded-lg text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-blue-500">
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 font-mono bg-slate-950/60">
+              <th class="py-2.5 px-3">Month</th>
+              <th class="py-2.5 px-3 text-right">Fund Yield (%)</th>
+              <th class="py-2.5 px-3 text-right">Fund NAV</th>
+              <th class="py-2.5 px-3 text-right">Cum. Fund %</th>
+              <th class="py-2.5 px-3 text-right">BTC Return %</th>
+              <th class="py-2.5 px-3">Primary Asset</th>
+              <th class="py-2.5 px-3">Venue</th>
+              <th class="py-2.5 px-3">Market Regime</th>
+            </tr>
+          </thead>
+          <tbody id="performanceTableBody" class="divide-y divide-slate-800/60 font-mono">
+            <!-- Populated via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CRYPTOGRAPHIC VERIFICATION & AUDIT FOOTER -->
+    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 shadow-xl text-xs font-mono text-slate-400">
+      <div class="flex items-center justify-between mb-3">
+        <span class="font-bold text-white flex items-center gap-2">
+          <i data-lucide="lock" class="w-4 h-4 text-emerald-400"></i>
+          Cryptographic Integrity &amp; Dataset Verification
+        </span>
+        <span class="text-emerald-400 text-xs px-2.5 py-0.5 rounded bg-emerald-950 border border-emerald-800">VERIFIED AUDIT RECORD</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div>
+          <span class="text-slate-500 block mb-1">CSV Dataset SHA-256 Hash:</span>
+          <code class="text-slate-300 break-all bg-slate-900 px-2 py-1 rounded block border border-slate-800">e1710f76fed19430296bb7fb478abab933a77c776b48d14a44f39b7fda1ac87c</code>
+        </div>
+        <div>
+          <span class="text-slate-500 block mb-1">Audit Protocol &amp; Mandate:</span>
+          <div class="bg-slate-900 px-2 py-1 rounded border border-slate-800 text-slate-300">
+            Quantitative Research Track Record · Nov 2022 – Aug 1, 2026 · Stabolut Ltd.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- JAVASCRIPT LOGIC & CHARTS -->
+  <script>
+    lucide.createIcons();
+
+    let monthlyData = [];
+
+    // Fetch data and initialize
+    fetch('./data/monthly_performance.json')
+      .then(res => res.json())
+      .then(data => {
+        monthlyData = data;
+        initCharts(data);
+        renderTable(data);
+        updateCalculator();
+      })
+      .catch(err => {
+        console.error("Error loading performance data:", err);
+      });
+
+    function initCharts(data) {
+      const labels = data.map(d => d.month);
+      const fundNAV = data.map(d => d.fund_nav);
+      const btcNAV = data.map(d => d.btc_nav);
+
+      // 1. NAV Line Chart
+      const ctxNav = document.getElementById('navChart').getContext('2d');
+      new Chart(ctxNav, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Stabolut Fund (NAV)',
+              data: fundNAV,
+              borderColor: '#2563eb',
+              backgroundColor: 'rgba(37, 99, 235, 0.1)',
+              borderWidth: 3,
+              tension: 0.15,
+              fill: true,
+              pointRadius: 0,
+              pointHoverRadius: 5
+            },
+            {
+              label: 'Bitcoin (BTC)',
+              data: btcNAV,
+              borderColor: '#f59e0b',
+              borderWidth: 1.5,
+              borderDash: [5, 5],
+              pointRadius: 0,
+              pointHoverRadius: 4,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#0f172a',
+              titleColor: '#f8fafc',
+              bodyColor: '#94a3b8',
+              borderColor: '#334155',
+              borderWidth: 1,
+              padding: 10
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(51, 65, 85, 0.3)' },
+              ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 10 }, maxTicksLimit: 12 }
+            },
+            y: {
+              grid: { color: 'rgba(51, 65, 85, 0.3)' },
+              ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 10 } }
+            }
+          }
+        }
+      });
+
+      // 2. Asset Doughnut Chart
+      const ctxAsset = document.getElementById('assetChart').getContext('2d');
+      new Chart(ctxAsset, {
+        type: 'doughnut',
+        data: {
+          labels: ['Bitcoin (XBT)', 'Solana (SOL)', 'Ripple (XRP Quanto)', 'Ethereum (ETH)', 'Others'],
+          datasets: [{
+            data: [38, 27, 20, 12, 3],
+            backgroundColor: ['#f59e0b', '#a855f7', '#64748b', '#3b82f6', '#10b981'],
+            borderColor: '#0f172a',
+            borderWidth: 3
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          cutout: '68%'
+        }
+      });
+    }
+
+    function renderTable(data) {
+      const tbody = document.getElementById('performanceTableBody');
+      tbody.innerHTML = '';
+      data.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-800/40 transition';
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 font-semibold text-white">${r.month}</td>
+          <td class="py-2.5 px-3 text-right text-emerald-400 font-bold">+${r.yield_pct.toFixed(2)}%</td>
+          <td class="py-2.5 px-3 text-right text-slate-200">${r.fund_nav.toFixed(2)}</td>
+          <td class="py-2.5 px-3 text-right text-blue-400">+${r.cumulative_fund_return_pct.toFixed(2)}%</td>
+          <td class="py-2.5 px-3 text-right ${r.btc_return_pct >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${r.btc_return_pct >= 0 ? '+' : ''}${r.btc_return_pct.toFixed(2)}%</td>
+          <td class="py-2.5 px-3 text-slate-300">${r.asset_driver}</td>
+          <td class="py-2.5 px-3 text-slate-400">${r.primary_venue}</td>
+          <td class="py-2.5 px-3 text-slate-400"><span class="px-2 py-0.5 rounded bg-slate-800/80 border border-slate-700/60">${r.regime}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Interactive Calculator
+    function updateCalculator() {
+      const p = parseFloat(document.getElementById('calcPrincipal').value) || 100000;
+      const mode = document.getElementById('calcMode').value;
+      const duration = parseInt(document.getElementById('calcDuration').value) || 45;
+
+      if (!monthlyData || monthlyData.length === 0) return;
+
+      const subData = monthlyData.slice(0, duration);
+      let finalVal = p;
+      let totalSimpleYield = 0;
+
+      if (mode === 'compound') {
+        subData.forEach(r => {
+          finalVal *= (1 + r.yield_pct / 100);
+        });
+      } else {
+        subData.forEach(r => {
+          totalSimpleYield += (p * r.yield_pct / 100);
+        });
+        finalVal = p + totalSimpleYield;
+      }
+
+      const profit = finalVal - p;
+      const profitPct = (profit / p) * 100;
+      const avgMonthly = profit / duration;
+
+      document.getElementById('resFinalVal').textContent = '$' + finalVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      document.getElementById('resProfit').textContent = `+$${profit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (+${profitPct.toFixed(2)}%)`;
+      document.getElementById('resMonthlyYield').textContent = '$' + avgMonthly.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' / mo';
+    }
+
+    document.getElementById('calcPrincipal').addEventListener('input', updateCalculator);
+    document.getElementById('calcMode').addEventListener('change', updateCalculator);
+    document.getElementById('calcDuration').addEventListener('change', updateCalculator);
+
+    // Table Search
+    document.getElementById('tableSearch').addEventListener('input', function(e) {
+      const q = e.target.value.toLowerCase();
+      const filtered = monthlyData.filter(d => 
+        d.month.toLowerCase().includes(q) || 
+        d.regime.toLowerCase().includes(q) || 
+        d.asset_driver.toLowerCase().includes(q) ||
+        d.primary_venue.toLowerCase().includes(q)
+      );
+      renderTable(filtered);
+    });
+  </script>
+</body>
+</html>
