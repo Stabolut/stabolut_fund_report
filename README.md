@@ -48,12 +48,19 @@ By pairing 1:1 spot long assets with equivalent short perpetual derivative contr
 
 ---
 
-### 3. PnL Attribution by Asset & Annualized Return by Year
+### 3. Monthly Return Calendar Matrix (Hedge Fund Performance Grid)
+![Monthly Performance Matrix](./assets/monthly_performance_matrix.png)
+
+> **Figure 3:** Calendar return matrix displaying every monthly yield across all 5 operating years (2022–2026), alongside total annual fund compounding vs. Bitcoin benchmark.
+
+---
+
+### 4. PnL Attribution by Asset & Annualized Return by Year
 ![Asset Allocation and Annual Return](./assets/asset_allocation.png)
 
 ---
 
-### 4. Risk-Return Efficiency Frontier
+### 5. Risk-Return Efficiency Frontier
 ![Risk Return Frontier](./assets/risk_return_frontier.png)
 
 ---

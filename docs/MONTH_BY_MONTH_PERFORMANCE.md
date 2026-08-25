@@ -19,6 +19,12 @@
 
 ---
 
+## 🗓️ Monthly Return Matrix (Calendar Grid)
+
+![Monthly Performance Matrix](../assets/monthly_performance_matrix.png)
+
+---
+
 ## 📅 Full 45-Month Granular Performance Table (Nov 2022 – Aug 2026)
 
 | # | Month | Fund Yield (%) | Fund NAV | Cum. Fund (%) | BTC Return (%) | ETH Return (%) | S&P 500 (%) | Primary Driver | Primary Venue | Market Regime & Strategy Notes |
