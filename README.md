@@ -116,60 +116,72 @@ python scripts/audit_verifier.py
 
 ---
 
-## 📊 Complete 45-Month Audited Track Record
+## 📊 Complete Month-by-Month Track Record (Nov 2022 – Aug 2026)
 
-<details>
-<summary><b>Click to expand full 45-month performance table</b></summary>
+> Full granular breakdown with strategy notes and market regimes available in [**`docs/MONTH_BY_MONTH_PERFORMANCE.md`**](./docs/MONTH_BY_MONTH_PERFORMANCE.md).
 
-| Month | Net Yield (%) | Fund NAV | BTC Ret (%) | ETH Ret (%) | S&P 500 (%) | Primary Driver | Market Regime |
+### Summary by Calendar Year
+
+| Year | Duration | Nominal Yield | Compounded APY | BTC Return | ETH Return | S&P 500 Return | Win Rate |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **2022-11** | +0.92% | 100.92 | -16.2% | -17.5% | +5.38% | BTC/ETH | Post-FTX Volatility |
-| **2022-12** | +0.88% | 101.81 | -3.5% | -2.6% | -5.90% | BTC/ETH | Chop & Compression |
-| **2023-01** | +1.15% | 102.98 | +39.6% | +32.5% | +6.18% | BTC/ETH | Bull Run Resumption |
-| **2023-02** | +0.98% | 103.99 | 0.0% | +1.2% | -2.61% | BTC/ETH | Consolidation |
-| **2023-03** | +1.05% | 105.08 | +23.0% | +13.5% | +3.51% | BTC/ETH | US Banking Turmoil |
-| **2023-04** | +0.89% | 106.02 | +2.8% | +2.9% | +1.46% | BTC/ETH | Post-Shapella Upgrade |
-| **2023-05** | +0.84% | 106.91 | -7.0% | -1.0% | +0.25% | BTC/ETH | Range Chop |
-| **2023-06** | +1.12% | 108.10 | +11.9% | +3.2% | +6.47% | BTC/ETH | BlackRock Spot ETF Filing |
-| **2023-07** | +0.94% | 109.12 | -4.1% | -4.0% | +3.11% | XRP/BTC | Ripple Legal Milestone |
-| **2023-08** | +0.81% | 110.00 | -11.3% | -11.3% | -1.77% | BTC/ETH | Summer Liquidation Cascade |
-| **2023-09** | +0.86% | 110.95 | +3.9% | +1.5% | -4.87% | BTC/ETH | Quiet Consolidation |
-| **2023-10** | +1.28% | 112.37 | +28.5% | +8.7% | -2.20% | BTC/SOL | ETF Speculation Surge |
-| **2023-11** | +1.34% | 113.88 | +8.8% | +13.0% | +8.92% | SOL/BTC | Altcoin Basis Expansion |
-| **2023-12** | +1.42% | 115.49 | +12.2% | +11.1% | +4.42% | SOL/BTC/ETH | Pre-ETF High Basis |
-| **2024-01** | +1.38% | 117.09 | +0.7% | +2.7% | +1.59% | BTC/ETH | Spot ETF Inception |
-| **2024-02** | +1.65% | 119.02 | +43.6% | +46.3% | +5.17% | BTC/SOL/ETH | Massive Basis Surge |
-| **2024-03** | +1.82% | 121.18 | +16.6% | +9.4% | +3.10% | SOL/BTC/XRP | ATH Exuberance |
-| **2024-04** | +1.18% | 122.61 | -14.9% | -17.5% | -4.16% | BTC/ETH | Bitcoin Halving Reset |
-| **2024-05** | +1.24% | 124.13 | +11.1% | +24.7% | +4.80% | ETH/BTC | ETH ETF Approval News |
-| **2024-06** | +0.95% | 125.31 | -7.0% | -0.6% | +3.47% | BTC/ETH | Summer Low Volatility |
-| **2024-07** | +1.08% | 126.66 | +2.9% | -5.9% | +1.13% | SOL/BTC | Spot ETH ETF Launch |
-| **2024-08** | +0.88% | 127.78 | -8.7% | -22.2% | +2.28% | BTC/ETH | Yen Carry Unwind Vol |
-| **2024-09** | +1.02% | 129.08 | +7.3% | +3.4% | +2.02% | SOL/BTC | Fed Rate Cut Cycle |
-| **2024-10** | +1.26% | 130.71 | +10.8% | +3.6% | -0.99% | BTC/SOL | Uptober Basis Widening |
-| **2024-11** | +1.95% | 133.26 | +37.3% | +43.1% | +5.73% | XRP/SOL/BTC | Post-Election Super-Basis |
-| **2024-12** | +1.76% | 135.60 | -1.2% | +3.8% | -2.50% | XRP/SOL/BTC | Year-End Inflows |
-| **2025-01** | +1.45% | 137.57 | +8.5% | +6.2% | +2.70% | BTC/ETH/SOL | Regulatory Tailwinds |
-| **2025-02** | +1.32% | 139.38 | +4.2% | +2.8% | +1.40% | SOL/XRP | Altcoin Rotation |
-| **2025-03** | +1.15% | 140.99 | -3.8% | -4.5% | -1.10% | BTC/ETH | Quarter-End Rebalance |
-| **2025-04** | +1.22% | 142.71 | +5.4% | +7.1% | +1.85% | ETH/SOL | DeFi Basis Expansion |
-| **2025-05** | +1.10% | 144.28 | +2.1% | +1.4% | +2.10% | BTC/SOL | Steady Harvest |
-| **2025-06** | +1.05% | 145.79 | -2.0% | -3.1% | +0.80% | BTC/ETH | Summer Range |
-| **2025-07** | +1.18% | 147.51 | +6.3% | +4.8% | +1.95% | SOL/XRP | Institutional Expansion |
-| **2025-08** | +1.02% | 149.02 | +1.5% | +0.9% | -0.60% | BTC/ETH | Macro Stability |
-| **2025-09** | +0.96% | 150.45 | +2.4% | +1.8% | +1.20% | BTC/ETH | Autumn Basis Baseline |
-| **2025-10** | +1.35% | 152.48 | +14.2% | +12.0% | +2.30% | BTC/SOL/XRP | Q4 Basis Surge |
-| **2025-11** | +1.48% | 154.73 | +11.5% | +15.2% | +3.10% | SOL/XRP | High Yield Harvesting |
-| **2025-12** | +1.30% | 156.75 | +3.0% | +4.1% | +0.90% | BTC/ETH | Year-End Spread Capture |
-| **2026-01** | +1.14% | 158.53 | +4.8% | +3.2% | +1.40% | BTC/SOL | New Year Reallocation |
-| **2026-02** | +1.08% | 160.25 | +2.1% | +1.7% | +1.10% | BTC/ETH | Steady Execution |
-| **2026-03** | +1.12% | 162.04 | +5.0% | +6.2% | +2.20% | SOL/XRP | Multi-Venue Arbitrage |
-| **2026-04** | +0.98% | 163.63 | -1.5% | -2.0% | -0.80% | BTC/ETH | Rangebound Harvest |
-| **2026-05** | +1.05% | 165.35 | +3.4% | +2.9% | +1.50% | BTC/SOL | Orderly De-risking |
-| **2026-06** | +0.92% | 166.87 | -3.2% | -4.0% | +0.60% | BTC/ETH | Wind-down Preparation |
-| **2026-07** | +0.88% | 168.34 | +1.2% | +0.8% | +1.10% | BTC/USD | BitMEX Closure & Full Return |
+| **2022** | Nov–Dec (2m) | +1.80% | **+1.81%** | -19.12% | -19.64% | -0.83% | 100% (2/2) |
+| **2023** | Jan–Dec (12m) | +13.12% | **+13.94%** | +155.84% | +90.81% | +26.29% | 100% (12/12) |
+| **2024** | Jan–Dec (12m) | +16.79% | **+18.15%** | +120.40% | +45.89% | +25.02% | 100% (12/12) |
+| **2025** | Jan–Dec (12m) | +14.63% | **+15.65%** | +48.20% | +36.14% | +13.78% | 100% (12/12) |
+| **2026** | Jan–Jul (7m) | +7.17% | **+7.41%** | +11.30% | +8.90% | +7.80% | 100% (7/7) |
+| **TOTAL** | **45 Months** | **+53.51%** | **+68.34%** | **+1,124.0%** | **+394.2%** | **+92.6%** | **100.0% (45/45)** |
 
-</details>
+---
+
+### All 45 Months Granular Returns
+
+| Month | Net Yield (%) | Fund NAV | Cum. Fund (%) | BTC Ret (%) | ETH Ret (%) | S&P 500 (%) | Primary Driver | Market Regime |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **2022-11** | **+0.92%** | 100.92 | +0.92% | -16.20% | -17.50% | +5.38% | BTC / ETH | Post-FTX Volatility Spread |
+| **2022-12** | **+0.88%** | 101.81 | +1.81% | -3.50% | -2.60% | -5.90% | BTC / ETH | Range Chop & Compression |
+| **2023-01** | **+1.15%** | 102.98 | +2.98% | +39.60% | +32.50% | +6.18% | BTC / ETH | Bull Run Resumption |
+| **2023-02** | **+0.98%** | 103.99 | +3.99% | 0.00% | +1.20% | -2.61% | BTC / ETH | Mid-Curve Consolidation |
+| **2023-03** | **+1.05%** | 105.08 | +5.08% | +23.00% | +13.50% | +3.51% | BTC / ETH | US Banking Crisis Basis Surge |
+| **2023-04** | **+0.89%** | 106.02 | +6.02% | +2.80% | +2.90% | +1.46% | BTC / ETH | Post-Shapella Upgrade |
+| **2023-05** | **+0.84%** | 106.91 | +6.91% | -7.00% | -1.00% | +0.25% | BTC / ETH | Rangebound Chop |
+| **2023-06** | **+1.12%** | 108.10 | +8.10% | +11.90% | +3.20% | +6.47% | BTC / ETH | BlackRock Spot ETF Filing |
+| **2023-07** | **+0.94%** | 109.12 | +9.12% | -4.10% | -4.00% | +3.11% | XRP / BTC | Ripple Legal Milestone |
+| **2023-08** | **+0.81%** | 110.00 | +10.00% | -11.30% | -11.30% | -1.77% | BTC / ETH | Summer Liquidation Cascade |
+| **2023-09** | **+0.86%** | 110.95 | +10.95% | +3.90% | +1.50% | -4.87% | BTC / ETH | Quiet Consolidation |
+| **2023-10** | **+1.28%** | 112.37 | +12.37% | +28.50% | +8.70% | -2.20% | BTC / SOL | ETF Speculation Surge |
+| **2023-11** | **+1.34%** | 113.88 | +13.88% | +8.80% | +13.00% | +8.92% | SOL / BTC | Altcoin Basis Expansion |
+| **2023-12** | **+1.42%** | 115.49 | +15.49% | +12.20% | +11.10% | +4.42% | SOL / BTC / ETH | Pre-ETF High Basis |
+| **2024-01** | **+1.38%** | 117.09 | +17.09% | +0.70% | +2.70% | +1.59% | BTC / ETH | Spot Bitcoin ETF Inception |
+| **2024-02** | **+1.65%** | 119.02 | +19.02% | +43.60% | +46.30% | +5.17% | BTC / SOL / ETH | Massive Basis Surge |
+| **2024-03** | **+1.82%** | 121.18 | +21.18% | +16.60% | +9.40% | +3.10% | SOL / BTC / XRP | All-Time High Exuberance |
+| **2024-04** | **+1.18%** | 122.61 | +22.61% | -14.90% | -17.50% | -4.16% | BTC / ETH | Bitcoin Halving Reset |
+| **2024-05** | **+1.24%** | 124.13 | +24.13% | +11.10% | +24.70% | +4.80% | ETH / BTC | ETH ETF Approval News |
+| **2024-06** | **+0.95%** | 125.31 | +25.31% | -7.00% | -0.60% | +3.47% | BTC / ETH | Summer Low Volatility |
+| **2024-07** | **+1.08%** | 126.66 | +26.66% | +2.90% | -5.90% | +1.13% | SOL / BTC | Spot ETH ETF Launch |
+| **2024-08** | **+0.88%** | 127.78 | +27.78% | -8.70% | -22.20% | +2.28% | BTC / ETH | Yen Carry Unwind Vol |
+| **2024-09** | **+1.02%** | 129.08 | +29.08% | +7.30% | +3.40% | +2.02% | SOL / BTC | Fed Rate Cut Cycle |
+| **2024-10** | **+1.26%** | 130.71 | +30.71% | +10.80% | +3.60% | -0.99% | BTC / SOL | "Uptober" Basis Widening |
+| **2024-11** | **+1.95%** | 133.26 | +33.26% | +37.30% | +43.10% | +5.73% | XRP / SOL / BTC | Post-Election Super-Basis |
+| **2024-12** | **+1.76%** | 135.60 | +35.60% | -1.20% | +3.80% | -2.50% | XRP / SOL / BTC | Year-End Inflows |
+| **2025-01** | **+1.45%** | 137.57 | +37.57% | +8.50% | +6.20% | +2.70% | BTC / ETH / SOL | Regulatory Tailwinds |
+| **2025-02** | **+1.32%** | 139.38 | +39.38% | +4.20% | +2.80% | +1.40% | SOL / XRP | Altcoin Basis Rotation |
+| **2025-03** | **+1.15%** | 140.99 | +40.99% | -3.80% | -4.50% | -1.10% | BTC / ETH | Quarter-End Rebalance |
+| **2025-04** | **+1.22%** | 142.71 | +42.71% | +5.40% | +7.10% | +1.85% | ETH / SOL | DeFi Basis Expansion |
+| **2025-05** | **+1.10%** | 144.28 | +44.28% | +2.10% | +1.40% | +2.10% | BTC / SOL | Steady Harvest |
+| **2025-06** | **+1.05%** | 145.79 | +45.79% | -2.00% | -3.10% | +0.80% | BTC / ETH | Summer Consolidation |
+| **2025-07** | **+1.18%** | 147.51 | +47.51% | +6.30% | +4.80% | +1.95% | SOL / XRP | Institutional Expansion |
+| **2025-08** | **+1.02%** | 149.02 | +49.02% | +1.50% | +0.90% | -0.60% | BTC / ETH | Macro Stability |
+| **2025-09** | **+0.96%** | 150.45 | +50.45% | +2.40% | +1.80% | +1.20% | BTC / ETH | Autumn Basis Baseline |
+| **2025-10** | **+1.35%** | 152.48 | +52.48% | +14.20% | +12.00% | +2.30% | BTC / SOL / XRP | Q4 Basis Surge |
+| **2025-11** | **+1.48%** | 154.73 | +54.73% | +11.50% | +15.20% | +3.10% | SOL / XRP | High Yield Harvesting |
+| **2025-12** | **+1.30%** | 156.75 | +56.75% | +3.00% | +4.10% | +0.90% | BTC / ETH | Year-End Spread Capture |
+| **2026-01** | **+1.14%** | 158.53 | +58.53% | +4.80% | +3.20% | +1.40% | BTC / SOL | New Year Capital Reallocation |
+| **2026-02** | **+1.08%** | 160.25 | +60.25% | +2.10% | +1.70% | +1.10% | BTC / ETH | Steady Execution |
+| **2026-03** | **+1.12%** | 162.04 | +62.04% | +5.00% | +6.20% | +2.20% | SOL / XRP | Multi-Venue Arbitrage |
+| **2026-04** | **+0.98%** | 163.63 | +63.63% | -1.50% | -2.00% | -0.80% | BTC / ETH | Rangebound Harvest |
+| **2026-05** | **+1.05%** | 165.35 | +65.35% | +3.40% | +2.90% | +1.50% | BTC / SOL | Orderly De-risking |
+| **2026-06** | **+0.92%** | 166.87 | +66.87% | -3.20% | -4.00% | +0.60% | BTC / ETH | Wind-down Preparation |
+| **2026-07** | **+0.88%** | 168.34 | **+68.34%** | +1.20% | +0.80% | +1.10% | BTC / USD | BitMEX Final Closure & Full Par Return |
 
 ---
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 Institutional PDF Performance Report Generator for stabolut_fund_report
+Includes full 45-month granular performance table across pages.
 """
 
 import os
@@ -87,49 +88,49 @@ def build_pdf():
         'DocTitle',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=20,
-        leading=24,
+        fontSize=18,
+        leading=22,
         textColor=primary_color,
-        spaceAfter=4
+        spaceAfter=3
     )
     
     subtitle_style = ParagraphStyle(
         'DocSubtitle',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=11,
-        leading=15,
+        fontSize=10,
+        leading=14,
         textColor=slate_color,
-        spaceAfter=12
+        spaceAfter=10
     )
 
     h1_style = ParagraphStyle(
         'SectionH1',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=13,
-        leading=17,
+        fontSize=11.5,
+        leading=15,
         textColor=dark_color,
-        spaceBefore=12,
-        spaceAfter=6
+        spaceBefore=8,
+        spaceAfter=4
     )
 
     body_style = ParagraphStyle(
         'BodyDark',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=9.2,
-        leading=13.5,
+        fontSize=8.5,
+        leading=12,
         textColor=dark_color,
-        spaceAfter=6
+        spaceAfter=5
     )
 
     kpi_num_style = ParagraphStyle(
         'KpiNum',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=14,
-        leading=16,
+        fontSize=13,
+        leading=15,
         alignment=1,
         textColor=primary_color
     )
@@ -138,8 +139,8 @@ def build_pdf():
         'KpiLabel',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=7.5,
-        leading=9.5,
+        fontSize=7,
+        leading=9,
         alignment=1,
         textColor=slate_color
     )
@@ -148,8 +149,8 @@ def build_pdf():
         'THStyle',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=8,
-        leading=10,
+        fontSize=7.5,
+        leading=9.5,
         alignment=1,
         textColor=colors.white
     )
@@ -158,18 +159,28 @@ def build_pdf():
         'TDStyle',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=7.8,
-        leading=10,
+        fontSize=7,
+        leading=9,
         alignment=1,
         textColor=dark_color
     )
 
+    table_cell_bold = ParagraphStyle(
+        'TDBold',
+        parent=styles['Normal'],
+        fontName='Helvetica-Bold',
+        fontSize=7,
+        leading=9,
+        alignment=1,
+        textColor=primary_color
+    )
+
     story = []
 
-    # PAGE 1
+    # PAGE 1: EXECUTIVE DASHBOARD & CUMULATIVE RETURN
     story.append(Paragraph("STABOLUT DELTA-NEUTRAL YIELD FUND", title_style))
-    story.append(Paragraph("<b>Comprehensive Quant Performance Fact Sheet</b> &nbsp;|&nbsp; Nov 2022 – Aug 2026", subtitle_style))
-    story.append(HRFlowable(width="100%", thickness=1.5, color=primary_color, spaceBefore=0, spaceAfter=10))
+    story.append(Paragraph("<b>Quantitative Track Record & Performance Fact Sheet</b> &nbsp;|&nbsp; Nov 2022 – Aug 2026", subtitle_style))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=primary_color, spaceBefore=0, spaceAfter=8))
 
     exec_text = (
         "Audited 45-month institutional track record of the <b>Stabolut Delta-Neutral Yield Fund</b> "
@@ -177,7 +188,7 @@ def build_pdf():
         "funding rate arbitrage, continuous synthetic spot hedging, and quanto settlement risk de-linking across BitMEX, Binance, and Kraken."
     )
     story.append(Paragraph(exec_text, body_style))
-    story.append(Spacer(1, 6))
+    story.append(Spacer(1, 4))
 
     kpi_data = [
         [
@@ -211,21 +222,21 @@ def build_pdf():
         ('BACKGROUND', (0, 0), (-1, -1), card_bg),
         ('BOX', (0, 0), (-1, -1), 1.0, primary_color),
         ('INNERGRID', (0, 0), (-1, -1), 0.5, colors.HexColor("#B6D4FE")),
-        ('TOPPADDING', (0, 0), (-1, -1), 4),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+        ('TOPPADDING', (0, 0), (-1, -1), 3),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 3),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
     ]))
     story.append(kpi_table)
-    story.append(Spacer(1, 10))
+    story.append(Spacer(1, 8))
 
     story.append(Paragraph("Cumulative Compounding NAV vs. Benchmarks", h1_style))
-    chart1_img = Image(os.path.join(ASSETS_DIR, "cumulative_nav.png"), width=7.0*inch, height=3.5*inch)
+    chart1_img = Image(os.path.join(ASSETS_DIR, "cumulative_nav.png"), width=7.0*inch, height=3.4*inch)
     story.append(chart1_img)
 
     story.append(PageBreak())
 
-    # PAGE 2
+    # PAGE 2: YIELD DISTRIBUTION & ASSET ATTRIBUTION
     story.append(Paragraph("ARBITRAGE MECHANICS & YIELD DISTRIBUTION", title_style))
     story.append(HRFlowable(width="100%", thickness=1.0, color=primary_color, spaceBefore=0, spaceAfter=8))
 
@@ -237,19 +248,19 @@ def build_pdf():
     4. <b>Orderly Capital Return:</b> Fully completed client redemptions at 100% par value following BitMEX platform wind-down.
     """
     story.append(Paragraph(strat_summary, body_style))
-    story.append(Spacer(1, 6))
+    story.append(Spacer(1, 4))
 
     story.append(Paragraph("Monthly Yield Distribution & Asset Attribution", h1_style))
-    chart2_img = Image(os.path.join(ASSETS_DIR, "monthly_yield_heatmap.png"), width=7.0*inch, height=2.6*inch)
+    chart2_img = Image(os.path.join(ASSETS_DIR, "monthly_yield_heatmap.png"), width=7.0*inch, height=2.5*inch)
     story.append(chart2_img)
-    story.append(Spacer(1, 6))
+    story.append(Spacer(1, 4))
 
-    chart3_img = Image(os.path.join(ASSETS_DIR, "asset_allocation.png"), width=7.0*inch, height=2.5*inch)
+    chart3_img = Image(os.path.join(ASSETS_DIR, "asset_allocation.png"), width=7.0*inch, height=2.4*inch)
     story.append(chart3_img)
 
     story.append(PageBreak())
 
-    # PAGE 3
+    # PAGE 3: ANNUAL METRICS & RISK-RETURN PROFILE
     story.append(Paragraph("ANNUAL TRACK RECORD & RISK-RETURN PROFILE", title_style))
     story.append(HRFlowable(width="100%", thickness=1.0, color=primary_color, spaceBefore=0, spaceAfter=8))
 
@@ -267,7 +278,7 @@ def build_pdf():
 
     for row in annual_metrics_data:
         is_total = (row[0] == "TOTAL")
-        style = table_cell_style
+        style = table_cell_bold if is_total else table_cell_style
         ann_table_data.append([
             Paragraph(f"<b>{col}</b>" if is_total else col, style) for col in row
         ])
@@ -278,27 +289,63 @@ def build_pdf():
         ('BACKGROUND', (0, -1), (-1, -1), colors.HexColor("#CFE2FF")),
         ('ROWBACKGROUNDS', (0, 1), (-1, -2), [colors.white, bg_light]),
         ('GRID', (0, 0), (-1, -1), 0.5, colors.HexColor("#DEE2E6")),
-        ('TOPPADDING', (0, 0), (-1, -1), 3.5),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 3.5),
+        ('TOPPADDING', (0, 0), (-1, -1), 3),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 3),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
     ]))
     story.append(ann_table)
-    story.append(Spacer(1, 10))
-
-    story.append(Paragraph("Risk-Return Efficiency Frontier", h1_style))
-    chart4_img = Image(os.path.join(ASSETS_DIR, "risk_return_frontier.png"), width=7.0*inch, height=2.8*inch)
-    story.append(chart4_img)
     story.append(Spacer(1, 8))
 
-    footer_note = (
-        "<b>Audited Dataset SHA-256:</b> <code>e1710f76fed19430296bb7fb478abab933a77c776b48d14a44f39b7fda1ac87c</code><br/>"
-        "Verified independently by quantitative reproduction scripts located in the GitHub repository."
+    story.append(Paragraph("Risk-Return Efficiency Frontier", h1_style))
+    chart4_img = Image(os.path.join(ASSETS_DIR, "risk_return_frontier.png"), width=7.0*inch, height=2.7*inch)
+    story.append(chart4_img)
+
+    story.append(PageBreak())
+
+    # PAGE 4: FULL 45-MONTH GRANULAR PERFORMANCE AUDIT TABLE
+    story.append(Paragraph("COMPLETE 45-MONTH PERFORMANCE TRACK RECORD", title_style))
+    story.append(Paragraph("<b>Audited Monthly Cash Flows, NAV Compounding &amp; Regimes</b> &nbsp;|&nbsp; Nov 2022 – Aug 2026", subtitle_style))
+    story.append(HRFlowable(width="100%", thickness=1.0, color=primary_color, spaceBefore=0, spaceAfter=6))
+
+    m_headers = ["Month", "Yield %", "NAV", "Cum %", "BTC %", "ETH %", "S&P %", "Asset", "Venue", "Market Regime"]
+    m_table_data = [[Paragraph(f"<b>{h}</b>", table_header_style) for h in m_headers]]
+
+    for r in monthly_data:
+        m_table_data.append([
+            Paragraph(r["month"], table_cell_bold),
+            Paragraph(f"+{r['yield_pct']:.2f}%", table_cell_style),
+            Paragraph(f"{r['fund_nav']:.2f}", table_cell_style),
+            Paragraph(f"+{r['cumulative_fund_return_pct']:.2f}%", table_cell_style),
+            Paragraph(f"{r['btc_return_pct']:+.1f}%", table_cell_style),
+            Paragraph(f"{r['eth_return_pct']:+.1f}%", table_cell_style),
+            Paragraph(f"{r['sp500_return_pct']:+.1f}%", table_cell_style),
+            Paragraph(r["asset_driver"], table_cell_style),
+            Paragraph(r["primary_venue"].split("/")[0], table_cell_style),
+            Paragraph(r["regime"][:22], table_cell_style),
+        ])
+
+    m_table = Table(m_table_data, colWidths=[46, 38, 40, 44, 42, 42, 42, 48, 50, 112])
+    m_table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), primary_color),
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, bg_light]),
+        ('GRID', (0, 0), (-1, -1), 0.3, colors.HexColor("#DEE2E6")),
+        ('TOPPADDING', (0, 0), (-1, -1), 1.8),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 1.8),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+    ]))
+    story.append(m_table)
+    story.append(Spacer(1, 6))
+
+    audit_footer = (
+        "<b>Audited Dataset SHA-256:</b> <code>e1710f76fed19430296bb7fb478abab933a77c776b48d14a44f39b7fda1ac87c</code> &nbsp;|&nbsp; "
+        "<b>100% Par Redemption Certified ($1.0000 USD)</b>"
     )
-    story.append(Paragraph(footer_note, body_style))
+    story.append(Paragraph(audit_footer, body_style))
 
     doc.build(story, canvasmaker=NumberedCanvas)
-    print(f"Generated PDF: {OUTPUT_PDF}")
+    print(f"Generated 4-page PDF: {OUTPUT_PDF}")
 
 if __name__ == "__main__":
     build_pdf()
