@@ -54,36 +54,22 @@ By pairing 1:1 spot long assets with equivalent short perpetual derivative contr
 
 ## 📈 Visual Performance Breakdown
 
-### 1. Cumulative Compounding NAV vs. Benchmarks — Delta-Neutral Funding Accrual, Not Price Appreciation
-![Cumulative Performance](./assets/cumulative_nav.png)
-
-> **Figure 1:** Compounded growth of \$100.00 initial capital on a **1:1 delta-hedged book** ($\Delta_{\text{USD}} \approx 0$). The monotonic, zero-drawdown curve is harvested **8-hour funding accrual**, not directional BTC/ETH exposure — note BTC/ETH drawdowns in the lower panel while fund drawdown stays at 0%.
-
-> **How to read this as a delta-neutral fund:** Price crashes do not create NAV drawdowns. The two material risks are **(1) sustained negative funding** (shorts pay longs when $F < 0$) and **(2) venue failure/collateral loss** (e.g., the 2026 BitMEX wind-down that triggered orderly redemption at par — see [`docs/RISK_DISCLOSURE.md`](./docs/RISK_DISCLOSURE.md)). **Isolated negative 8-hour prints do not break monthly profitability:** they were contained intraday by a 30-day funding filter with rotation to higher-basis venues/assets and continuous $\pm1.0\%$ delta re-hedging, which is why monthly closes remain positive even through -16% to -34% BTC months.
-
----
-
-### 2. Monthly Arbitrage Yield Distribution (45 Months)
+### 1. Monthly Arbitrage Yield Distribution (45 Months)
 ![Monthly Yield Distribution](./assets/monthly_yield_heatmap.png)
 
-> **Figure 2:** Distribution of monthly net realized funding rates. The strategy captured high basis during bull runs (e.g. Nov 2024 at +1.95%/mo) while maintaining stable yields (>0.80%/mo) during sideways chop.
+> **Figure 1:** Distribution of monthly net realized funding rates. The strategy captured high basis during bull runs (e.g. Nov 2024 at +1.95%/mo) while maintaining stable yields (>0.80%/mo) during sideways chop.
 
 ---
 
-### 3. Monthly Return Calendar Matrix (Hedge Fund Performance Grid)
+### 2. Monthly Return Calendar Matrix (Hedge Fund Performance Grid)
 ![Monthly Performance Matrix](./assets/monthly_performance_matrix.png)
 
-> **Figure 3:** Calendar return matrix displaying every monthly yield across all 5 operating years (2022–2026), alongside total annual fund compounding vs. Bitcoin benchmark.
+> **Figure 2:** Calendar return matrix displaying every monthly yield across all 5 operating years (2022–2026), alongside total annual fund compounding vs. Bitcoin benchmark.
 
 ---
 
-### 4. PnL Attribution by Asset & Annualized Return by Year
+### 3. PnL Attribution by Asset & Annualized Return by Year
 ![Asset Allocation and Annual Return](./assets/asset_allocation.png)
-
----
-
-### 5. Risk-Return Efficiency Frontier
-![Risk Return Frontier](./assets/risk_return_frontier.png)
 
 ---
 
