@@ -3,18 +3,23 @@
 Independent Quantitative Verifier & Cryptographic Audit for Stabolut Fund Track Record
 """
 
+import argparse
 import json
 import hashlib
-import os
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
-DATA_DIR = "/Users/user/source/stabolut/stabolut_fund_report/data"
-CSV_PATH = os.path.join(DATA_DIR, "monthly_performance.csv")
-JSON_PATH = os.path.join(DATA_DIR, "monthly_performance.json")
-METRICS_PATH = os.path.join(DATA_DIR, "audit_metrics_summary.json")
+BASE_DIR = Path(__file__).resolve().parents[1]
+DATA_DIR = BASE_DIR / "data"
+CSV_PATH = DATA_DIR / "monthly_performance.csv"
+JSON_PATH = DATA_DIR / "monthly_performance.json"
+METRICS_PATH = DATA_DIR / "audit_metrics_summary.json"
 
-def verify_and_compute():
+def verify_and_compute(write: bool = True, check: bool = False):
     # 1. SHA-256 Dataset Verification Hash
     with open(CSV_PATH, "rb") as f:
         csv_hash = hashlib.sha256(f.read()).hexdigest()
@@ -68,10 +73,14 @@ def verify_and_compute():
     excess_sp500_m = sp500_m - rf_m
     sharpe_sp500 = (excess_sp500_m.mean() / sp500_vol_m) * np.sqrt(12)
 
-    # Sortino Ratio
+    # Sortino Ratio — downside deviation vs risk-free rate; None if no downside months (100% win rate -> infinite)
     downside_returns = excess_fund_m[excess_fund_m < 0]
-    downside_std_m = np.sqrt((downside_returns**2).sum() / len(fund_m)) if len(downside_returns) > 0 else 0
-    sortino_fund = (excess_fund_m.mean() / downside_std_m) * np.sqrt(12) if downside_std_m > 0 else 14.80
+    if len(downside_returns) > 0:
+        downside_std_m = np.sqrt((downside_returns**2).sum() / len(fund_m))
+        sortino_fund = (excess_fund_m.mean() / downside_std_m) * np.sqrt(12)
+    else:
+        downside_std_m = 0.0
+        sortino_fund = None  # undefined: no downside observation (100% win rate)
 
     # Drawdowns
     fund_nav_series = df["Fund_NAV"]
@@ -113,7 +122,7 @@ def verify_and_compute():
 
     audit_payload = {
         "audit_meta": {
-            "verified_at": "2026-08-25T18:30:00Z",
+            "verified_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
             "period": f"{df['Month'].iloc[0]} to {df['Month'].iloc[-1]}",
             "total_months": n_months,
             "total_years": round(n_years, 2),
@@ -130,7 +139,7 @@ def verify_and_compute():
             "max_monthly_yield_pct": round(fund_m.max() * 100, 2),
             "annualized_volatility_pct": round(fund_vol_ann * 100, 2),
             "sharpe_ratio": round(sharpe_fund, 2),
-            "sortino_ratio": round(sortino_fund, 2),
+            "sortino_ratio": round(sortino_fund, 2) if sortino_fund is not None else None,
             "max_drawdown_monthly_pct": round(max_dd_fund * 100, 2),
             "beta_to_btc": round(beta_btc, 4),
             "correlation_to_btc": round(corr_btc, 3),
@@ -155,14 +164,54 @@ def verify_and_compute():
         "yearly_performance": yearly_stats
     }
 
-    with open(METRICS_PATH, "w") as f:
-        json.dump(audit_payload, f, indent=2)
+    # --- write or check mode ---
+    if check and METRICS_PATH.exists():
+        try:
+            existing = json.loads(METRICS_PATH.read_text())
+        except Exception as e:
+            print(f"CHECK FAILED: could not read existing {METRICS_PATH}: {e}", file=sys.stderr)
+            sys.exit(2)
+        mismatches = []
+        for k in ("csv_sha256", "json_sha256"):
+            if existing.get("audit_meta", {}).get(k) != audit_payload["audit_meta"][k]:
+                mismatches.append(k)
+        for sec in ("performance_metrics", "benchmarks", "yearly_performance"):
+            if existing.get(sec) != audit_payload.get(sec):
+                # allow verified_at to differ in check mode
+                if sec == "performance_metrics":
+                    # compare without sortino nuance (None vs 14.8 legacy)
+                    pass
+                mismatches.append(sec)
+        if mismatches:
+            print(f"CHECK FAILED: drift in {', '.join(mismatches)} — run without --check to regenerate", file=sys.stderr)
+            sys.exit(1)
+        print("CHECK PASSED: on-disk metrics match recomputed values.")
+        print(f"CSV SHA-256: {csv_hash}")
+        print(f"JSON SHA-256: {json_hash}")
+        return audit_payload
+
+    if write:
+        with open(METRICS_PATH, "w") as f:
+            json.dump(audit_payload, f, indent=2)
+        print(f"Wrote {METRICS_PATH}")
 
     print("Audit Verification Complete.")
     print(f"CSV SHA-256: {csv_hash}")
+    print(f"JSON SHA-256: {json_hash}")
     print(f"Cumulative Return: +{audit_payload['performance_metrics']['cumulative_fund_return_pct']}%")
     print(f"Fund Sharpe Ratio: {audit_payload['performance_metrics']['sharpe_ratio']}")
+    sr = audit_payload["performance_metrics"]["sortino_ratio"]
+    if sr is None:
+        print("Sortino Ratio: n/a (no downside months — 100% win rate, infinite)")
+    else:
+        print(f"Sortino Ratio: {sr}")
+    print(f"Status: {audit_payload['audit_meta']['verification_status']}")
     return audit_payload
 
+
 if __name__ == "__main__":
-    verify_and_compute()
+    parser = argparse.ArgumentParser(description="Stabolut audit verifier")
+    parser.add_argument("--check", action="store_true", help="verify on-disk metrics match recomputed values; exit 1 on drift, no write")
+    parser.add_argument("--no-write", action="store_true", help="do not write audit_metrics_summary.json")
+    args = parser.parse_args()
+    verify_and_compute(write=not args.no_write and not args.check, check=args.check)

@@ -3,17 +3,18 @@
 Generate institutional Monthly Calendar Heatmap & Summary Grid for Stabolut Fund Report.
 """
 
-import os
+from pathlib import Path
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
-BASE_DIR = "/Users/user/source/stabolut/stabolut_fund_report"
-DATA_DIR = os.path.join(BASE_DIR, "data")
-ASSETS_DIR = os.path.join(BASE_DIR, "assets")
+BASE_DIR = Path(__file__).resolve().parents[1]
+DATA_DIR = BASE_DIR / "data"
+ASSETS_DIR = BASE_DIR / "assets"
 
-df = pd.read_csv(os.path.join(DATA_DIR, "monthly_performance.csv"))
+df = pd.read_csv(DATA_DIR / "monthly_performance.csv")
 
 # Parse Year and Month
 df["Year"] = df["Month"].apply(lambda x: int(x.split("-")[0]))
@@ -104,7 +105,7 @@ cb.ax.tick_params(labelsize=8)
 
 plt.figtext(0.62, 0.045, "• 100% Win Rate (45 / 45 Months Positive)  • Zero Monthly Drawdown  • Par $1.00 Peg Maintained", fontsize=8.5, fontweight='bold', color='#0A58CA')
 
-out_path = os.path.join(ASSETS_DIR, "monthly_performance_matrix.png")
+out_path = ASSETS_DIR / "monthly_performance_matrix.png"
 plt.savefig(out_path, dpi=300, bbox_inches='tight')
 plt.close()
 print(f"Generated: {out_path}")

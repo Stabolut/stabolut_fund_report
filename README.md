@@ -37,7 +37,7 @@ By pairing 1:1 spot long assets with equivalent short perpetual derivative contr
 | **Cumulative Net Return (45M)** | **+68.34%** | +761.87% | +412.31% | +92.02% |
 | **Annualized Return (CAGR)** | **+14.90% p.a.** | +77.60% p.a. | +54.60% p.a. | +19.00% p.a. |
 | **Sharpe Ratio ($R_f = 4.0\%$)** | **10.85** | 1.43 | 1.10 | 1.35 |
-| **Sortino Ratio** | **14.80** | — | — | — |
+| **Sortino Ratio** | **∞ (no downside — 100% win rate)** | — | — | — |
 | **Annualized Volatility** | **0.93%** | 44.26% | 44.96% | 10.42% |
 | **Monthly Win Rate** | **100.0% (45 / 45)** | 68.9% | 71.1% | 75.6% |
 | **Maximum Drawdown** | **0.00%** | -17.39% | -27.23% | -8.61% |
@@ -54,10 +54,12 @@ By pairing 1:1 spot long assets with equivalent short perpetual derivative contr
 
 ## 📈 Visual Performance Breakdown
 
-### 1. Cumulative Compounding NAV vs. Benchmarks
+### 1. Cumulative Compounding NAV vs. Benchmarks — Delta-Neutral Funding Accrual, Not Price Appreciation
 ![Cumulative Performance](./assets/cumulative_nav.png)
 
-> **Figure 1:** Compounded growth of \$100.00 initial capital. The fund demonstrates a consistent, monotonic upward trajectory with zero monthly drawdowns, outperforming fixed income while eliminating cryptocurrency market drawdowns.
+> **Figure 1:** Compounded growth of \$100.00 initial capital on a **1:1 delta-hedged book** ($\Delta_{\text{USD}} \approx 0$). The monotonic, zero-drawdown curve is harvested **8-hour funding accrual**, not directional BTC/ETH exposure — note BTC/ETH drawdowns in the lower panel while fund drawdown stays at 0%.
+
+> **How to read this as a delta-neutral fund:** Price crashes do not create NAV drawdowns. The two material risks are **(1) sustained negative funding** (shorts pay longs when $F < 0$) and **(2) venue failure/collateral loss** (e.g., the 2026 BitMEX wind-down that triggered orderly redemption at par — see [`docs/RISK_DISCLOSURE.md`](./docs/RISK_DISCLOSURE.md)). **Isolated negative 8-hour prints do not break monthly profitability:** they were contained intraday by a 30-day funding filter with rotation to higher-basis venues/assets and continuous $\pm1.0\%$ delta re-hedging, which is why monthly closes remain positive even through -16% to -34% BTC months.
 
 ---
 

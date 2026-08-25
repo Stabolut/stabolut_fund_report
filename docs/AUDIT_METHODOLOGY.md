@@ -11,13 +11,16 @@ To ensure historical data immutability and prevent retroactive modification, all
 * **CSV Dataset (`data/monthly_performance.csv`):**  
   `e1710f76fed19430296bb7fb478abab933a77c776b48d14a44f39b7fda1ac87c`
 * **JSON Dataset (`data/monthly_performance.json`):**  
-  `41c59918731b9d4e51240217eb73d611ee1b4703a893cb523ec36a9926a8d672`
+  `440bc1f3360be2b6a08f4d56f8a051d1a1d50ade977e2f99dab4dc15d1d7fccf`
 
 ### Verification Command
-You can verify the dataset hash locally using any standard Unix terminal:
+You can verify the dataset hashes locally using any standard Unix terminal:
 
 ```bash
-shasum -a 256 data/monthly_performance.csv
+# macOS
+shasum -a 256 data/monthly_performance.csv data/monthly_performance.json
+# Linux
+sha256sum data/monthly_performance.csv data/monthly_performance.json
 ```
 
 ---

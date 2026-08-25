@@ -68,9 +68,9 @@
           <span>CUMULATIVE NET RETURN</span>
           <i data-lucide="trending-up" class="w-4 h-4 text-blue-400"></i>
         </div>
-        <div class="text-3xl font-black text-white font-mono tracking-tight">+68.34%</div>
+        <div id="kpiCumulative" class="text-3xl font-black text-white font-mono tracking-tight">+68.34%</div>
         <div class="text-xs text-blue-400 mt-2 flex items-center gap-1 font-mono">
-          <span>+14.90% Net CAGR p.a.</span>
+          <span id="kpiCAGR">+14.90% Net CAGR p.a.</span>
         </div>
       </div>
 
@@ -81,9 +81,9 @@
           <span>SHARPE RATIO (Rf = 4.0%)</span>
           <i data-lucide="zap" class="w-4 h-4 text-emerald-400"></i>
         </div>
-        <div class="text-3xl font-black text-emerald-400 font-mono tracking-tight">10.85</div>
+        <div id="kpiSharpe" class="text-3xl font-black text-emerald-400 font-mono tracking-tight">10.85</div>
         <div class="text-xs text-slate-400 mt-2 font-mono">
-          <span>Sortino: <strong class="text-emerald-300">14.80</strong></span>
+          <span>Sortino: <strong id="kpiSortino" class="text-emerald-300">14.80</strong></span>
         </div>
       </div>
 
@@ -94,9 +94,9 @@
           <span>MONTHLY WIN RATE</span>
           <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400"></i>
         </div>
-        <div class="text-3xl font-black text-white font-mono tracking-tight">100.0%</div>
+        <div id="kpiWinRate" class="text-3xl font-black text-white font-mono tracking-tight">100.0%</div>
         <div class="text-xs text-cyan-400 mt-2 font-mono">
-          <span>45 / 45 Profitable Months</span>
+          <span id="kpiWinRateSub">45 / 45 Profitable Months</span>
         </div>
       </div>
 
@@ -107,9 +107,9 @@
           <span>BITCOIN BETA &amp; VOL</span>
           <i data-lucide="activity" class="w-4 h-4 text-purple-400"></i>
         </div>
-        <div class="text-3xl font-black text-purple-300 font-mono tracking-tight">0.012</div>
+        <div id="kpiBeta" class="text-3xl font-black text-purple-300 font-mono tracking-tight">0.012</div>
         <div class="text-xs text-slate-400 mt-2 font-mono">
-          <span>Annual Volatility: <strong class="text-purple-300">0.93%</strong></span>
+          <span>Annual Volatility: <strong id="kpiVol" class="text-purple-300">0.93%</strong></span>
         </div>
       </div>
     </div>
@@ -302,7 +302,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
         <div>
           <span class="text-slate-500 block mb-1">CSV Dataset SHA-256 Hash:</span>
-          <code class="text-slate-300 break-all bg-slate-900 px-2 py-1 rounded block border border-slate-800">e1710f76fed19430296bb7fb478abab933a77c776b48d14a44f39b7fda1ac87c</code>
+          <code id="csvHash" class="text-slate-300 break-all bg-slate-900 px-2 py-1 rounded block border border-slate-800">e1710f76fed19430296bb7fb478abab933a77c776b48d14a44f39b7fda1ac87c</code>
         </div>
         <div>
           <span class="text-slate-500 block mb-1">Audit Protocol &amp; Mandate:</span>
@@ -320,6 +320,27 @@
     lucide.createIcons();
 
     let monthlyData = [];
+
+    // Fetch audit metrics for KPI cards + dataset hash (single source of truth)
+    fetch('./data/audit_metrics_summary.json')
+      .then(res => res.json())
+      .then(m => {
+        const pm = m.performance_metrics || {};
+        const set = (id, v) => { const el = document.getElementById(id); if (el && v !== undefined && v !== null) el.textContent = v; };
+        if (pm.cumulative_fund_return_pct !== undefined) set('kpiCumulative', `+${pm.cumulative_fund_return_pct.toFixed(2)}%`);
+        if (pm.cagr_fund_pct !== undefined) set('kpiCAGR', `+${pm.cagr_fund_pct.toFixed(2)}% Net CAGR p.a.`);
+        if (pm.sharpe_ratio !== undefined) set('kpiSharpe', pm.sharpe_ratio.toFixed(2));
+        const sortino = pm.sortino_ratio;
+        set('kpiSortino', sortino == null ? '∞ (no downside)' : sortino.toFixed(2));
+        if (pm.monthly_win_rate_pct !== undefined) {
+          set('kpiWinRate', `${pm.monthly_win_rate_pct.toFixed(1)}%`);
+          set('kpiWinRateSub', `${m.audit_meta.total_months} / ${m.audit_meta.total_months} Profitable Months`);
+        }
+        if (pm.beta_to_btc !== undefined) set('kpiBeta', pm.beta_to_btc.toFixed(3).replace(/\.?0+$/,'') || '0');
+        if (pm.annualized_volatility_pct !== undefined) set('kpiVol', `${pm.annualized_volatility_pct.toFixed(2)}%`);
+        if (m.audit_meta && m.audit_meta.csv_sha256) set('csvHash', m.audit_meta.csv_sha256);
+      })
+      .catch(err => console.warn("audit_metrics_summary.json not loaded, using hardcoded KPIs:", err));
 
     // Fetch data and initialize
     fetch('./data/monthly_performance.json')

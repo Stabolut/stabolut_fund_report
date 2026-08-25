@@ -3,23 +3,24 @@
 Generate publication-quality charts and visual assets for the Stabolut Fund Report repository.
 """
 
-import os
-import json
+from pathlib import Path
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-ASSETS_DIR = "/Users/user/source/stabolut/stabolut_fund_report/assets"
-DATA_DIR = "/Users/user/source/stabolut/stabolut_fund_report/data"
-os.makedirs(ASSETS_DIR, exist_ok=True)
+BASE_DIR = Path(__file__).resolve().parents[1]
+ASSETS_DIR = BASE_DIR / "assets"
+DATA_DIR = BASE_DIR / "data"
+ASSETS_DIR.mkdir(parents=True, exist_ok=True)
 
 plt.style.use('seaborn-v0_8-whitegrid' if 'seaborn-v0_8-whitegrid' in plt.style.available else 'default')
 plt.rcParams['font.sans-serif'] = 'Helvetica, Arial, DejaVu Sans, sans-serif'
 plt.rcParams['axes.edgecolor'] = '#DEE2E6'
 plt.rcParams['axes.linewidth'] = 0.8
 
-df = pd.read_csv(os.path.join(DATA_DIR, "monthly_performance.csv"))
+df = pd.read_csv(DATA_DIR / "monthly_performance.csv")
 df["Date"] = pd.to_datetime(df["Month"] + "-01")
 
 # ==============================================================================
@@ -66,7 +67,7 @@ ax2.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
 plt.xticks(rotation=25, ha='right')
 
 plt.tight_layout()
-plt.savefig(os.path.join(ASSETS_DIR, "cumulative_nav.png"), dpi=300)
+plt.savefig(ASSETS_DIR / "cumulative_nav.png", dpi=300)
 plt.close()
 
 # ==============================================================================
@@ -92,7 +93,7 @@ ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
 plt.xticks(rotation=25, ha='right')
 
 plt.tight_layout()
-plt.savefig(os.path.join(ASSETS_DIR, "monthly_yield_heatmap.png"), dpi=300)
+plt.savefig(ASSETS_DIR / "monthly_yield_heatmap.png", dpi=300)
 plt.close()
 
 # ==============================================================================
@@ -119,7 +120,7 @@ ax_pie.set_title("PnL Yield Contribution by Asset Class", fontsize=11, fontweigh
 
 # Annualized Yield by Calendar Year
 years = ['2022\n(2m)', '2023\n(12m)', '2024\n(12m)', '2025\n(12m)', '2026\n(7m)']
-ann_yields = [11.3, 13.1, 16.8, 15.1, 12.5]
+ann_yields = [11.37, 13.44, 17.42, 15.59, 12.99]
 bar_colors = ['#6C757D', '#0DCAF0', '#0D6EFD', '#0B5ED7', '#0A58CA']
 
 ax_bar.bar(years, ann_yields, color=bar_colors, edgecolor="#052C65", width=0.55)
@@ -132,7 +133,7 @@ ax_bar.set_ylim(0, 20)
 ax_bar.grid(True, linestyle="--", alpha=0.5)
 
 plt.tight_layout()
-plt.savefig(os.path.join(ASSETS_DIR, "asset_allocation.png"), dpi=300)
+plt.savefig(ASSETS_DIR / "asset_allocation.png", dpi=300)
 plt.close()
 
 # ==============================================================================
@@ -142,9 +143,9 @@ fig, ax = plt.subplots(figsize=(10, 5.0))
 
 points = [
     ("Stabolut Delta-Neutral Fund", 14.9, 0.93, "#0A58CA", 180, "*"),
-    ("Bitcoin (BTC)", 52.4, 54.2, "#F7931A", 120, "o"),
-    ("Ethereum (ETH)", 38.6, 61.5, "#627EEA", 120, "o"),
-    ("S&P 500 Index", 12.8, 14.5, "#198754", 110, "s"),
+    ("Bitcoin (BTC)", 77.6, 44.26, "#F7931A", 120, "o"),
+    ("Ethereum (ETH)", 54.6, 44.96, "#627EEA", 120, "o"),
+    ("S&P 500 Index", 19.0, 10.42, "#198754", 110, "s"),
     ("US 10Y Treasuries", 3.2, 8.4, "#6C757D", 100, "d"),
     ("USD Cash / T-Bills", 4.0, 0.2, "#20C997", 90, "^")
 ]
@@ -169,7 +170,7 @@ ax.set_ylim(0, 60)
 ax.grid(True, linestyle="--", alpha=0.5)
 
 plt.tight_layout()
-plt.savefig(os.path.join(ASSETS_DIR, "risk_return_frontier.png"), dpi=300)
+plt.savefig(ASSETS_DIR / "risk_return_frontier.png", dpi=300)
 plt.close()
 
 # ==============================================================================
@@ -249,7 +250,7 @@ svg_architecture = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 3
   </g>
 </svg>"""
 
-with open(os.path.join(ASSETS_DIR, "architecture_diagram.svg"), "w") as f:
+with open(ASSETS_DIR / "architecture_diagram.svg", "w") as f:
     f.write(svg_architecture)
 
 print("Generated all publication assets in assets/")

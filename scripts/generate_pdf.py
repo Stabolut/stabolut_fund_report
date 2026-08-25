@@ -4,7 +4,7 @@ Institutional PDF Performance Report Generator for stabolut_fund_report
 Includes full 45-month granular performance table across pages.
 """
 
-import os
+from pathlib import Path
 import json
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
@@ -15,15 +15,15 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
 
-BASE_DIR = "/Users/user/source/stabolut/stabolut_fund_report"
-DATA_DIR = os.path.join(BASE_DIR, "data")
-ASSETS_DIR = os.path.join(BASE_DIR, "assets")
-OUTPUT_PDF = os.path.join(BASE_DIR, "Stabolut_Fund_Performance_Report.pdf")
+BASE_DIR = Path(__file__).resolve().parents[1]
+DATA_DIR = BASE_DIR / "data"
+ASSETS_DIR = BASE_DIR / "assets"
+OUTPUT_PDF = BASE_DIR / "Stabolut_Fund_Performance_Report.pdf"
 
-with open(os.path.join(DATA_DIR, "audit_metrics_summary.json")) as f:
+with open(DATA_DIR / "audit_metrics_summary.json") as f:
     metrics = json.load(f)
 
-with open(os.path.join(DATA_DIR, "monthly_performance.json")) as f:
+with open(DATA_DIR / "monthly_performance.json") as f:
     monthly_data = json.load(f)
 
 
@@ -231,7 +231,7 @@ def build_pdf():
     story.append(Spacer(1, 8))
 
     story.append(Paragraph("Cumulative Compounding NAV vs. Benchmarks", h1_style))
-    chart1_img = Image(os.path.join(ASSETS_DIR, "cumulative_nav.png"), width=7.0*inch, height=3.4*inch)
+    chart1_img = Image(ASSETS_DIR / "cumulative_nav.png", width=7.0*inch, height=3.4*inch)
     story.append(chart1_img)
 
     story.append(PageBreak())
@@ -251,11 +251,11 @@ def build_pdf():
     story.append(Spacer(1, 4))
 
     story.append(Paragraph("Monthly Yield Distribution & Asset Attribution", h1_style))
-    chart2_img = Image(os.path.join(ASSETS_DIR, "monthly_yield_heatmap.png"), width=7.0*inch, height=2.5*inch)
+    chart2_img = Image(ASSETS_DIR / "monthly_yield_heatmap.png", width=7.0*inch, height=2.5*inch)
     story.append(chart2_img)
     story.append(Spacer(1, 4))
 
-    chart3_img = Image(os.path.join(ASSETS_DIR, "asset_allocation.png"), width=7.0*inch, height=2.4*inch)
+    chart3_img = Image(ASSETS_DIR / "asset_allocation.png", width=7.0*inch, height=2.4*inch)
     story.append(chart3_img)
 
     story.append(PageBreak())
@@ -269,11 +269,11 @@ def build_pdf():
     
     annual_metrics_data = [
         ["2022", "Nov–Dec (2m)", "+1.80%", "+1.81%", "-19.1%", "-0.8%", "9.80", "100%"],
-        ["2023", "Jan–Dec (12m)", "+13.12%", "+13.94%", "+155.8%", "+26.3%", "11.20", "100%"],
-        ["2024", "Jan–Dec (12m)", "+16.79%", "+18.15%", "+120.4%", "+25.0%", "12.40", "100%"],
-        ["2025", "Jan–Dec (12m)", "+14.63%", "+15.65%", "+48.2%", "+13.8%", "11.10", "100%"],
-        ["2026", "Jan–Jul (7m)", "+7.17%", "+7.41%", "+11.3%", "+7.8%", "10.15", "100%"],
-        ["TOTAL", "45 Months", "+53.51%", "+68.34%", "+1,124.0%", "+92.6%", "10.85", "100.0%"]
+        ["2023", "Jan–Dec (12m)", "+12.68%", "+13.44%", "+154.7%", "+24.2%", "11.20", "100%"],
+        ["2024", "Jan–Dec (12m)", "+16.17%", "+17.42%", "+124.6%", "+23.3%", "12.40", "100%"],
+        ["2025", "Jan–Dec (12m)", "+14.58%", "+15.59%", "+66.2%", "+17.8%", "11.10", "100%"],
+        ["2026", "Jan–Jul (7m)", "+7.17%", "+7.39%", "+12.1%", "+7.3%", "10.15", "100%"],
+        ["TOTAL", "45 Months", "+52.40%", "+68.34%", "+761.9%", "+92.0%", "10.85", "100.0%"]
     ]
 
     for row in annual_metrics_data:
@@ -298,7 +298,7 @@ def build_pdf():
     story.append(Spacer(1, 8))
 
     story.append(Paragraph("Risk-Return Efficiency Frontier", h1_style))
-    chart4_img = Image(os.path.join(ASSETS_DIR, "risk_return_frontier.png"), width=7.0*inch, height=2.7*inch)
+    chart4_img = Image(ASSETS_DIR / "risk_return_frontier.png", width=7.0*inch, height=2.7*inch)
     story.append(chart4_img)
 
     story.append(PageBreak())

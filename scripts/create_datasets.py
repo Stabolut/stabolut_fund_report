@@ -1,6 +1,11 @@
 import csv
 import json
+from pathlib import Path
+
 import numpy as np
+
+BASE_DIR = Path(__file__).resolve().parents[1]
+DATA_DIR = BASE_DIR / "data"
 
 # 45 months dataset: Nov 2022 to Jul 2026 (Aug 1, 2026 closure)
 monthly_records = [
@@ -81,7 +86,7 @@ for r in monthly_records:
     r["cumulative_sp500_return_pct"] = round((sp500_nav - 100.0), 2)
 
 # Save CSV
-with open("/Users/user/source/stabolut/stabolut_fund_report/data/monthly_performance.csv", "w", newline="") as f:
+with open(DATA_DIR / "monthly_performance.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerow([
         "Month", "Yield_Pct", "BTC_Return_Pct", "ETH_Return_Pct", "SP500_Return_Pct",
@@ -98,7 +103,7 @@ with open("/Users/user/source/stabolut/stabolut_fund_report/data/monthly_perform
         ])
 
 # Save JSON
-with open("/Users/user/source/stabolut/stabolut_fund_report/data/monthly_performance.json", "w") as f:
+with open(DATA_DIR / "monthly_performance.json", "w") as f:
     json.dump(monthly_records, f, indent=2)
 
 print("Generated monthly performance data in stabolut_fund_report/data/")
